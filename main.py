@@ -13,12 +13,21 @@ dziesiatki = [
     "sześćdziesisiąt", "siedemdziesiąt", "osiemdziesiąt", "dziewiędziesiąt"
 ]
 
+setki = [
+    "", "sto", "dwieście", "trzysta", "czterysta", "pięćset",
+    "sześćset", "siedemset", "osiemset", "dziewięćset"
+]
 
 def zamien_jedna(liczba):
     wynik = ""
+
     if liczba < 0:
         wynik = "minus "
         liczba = abs(liczba)
+
+    if liczba > 99:
+        wynik += setki[liczba // 100] + " "
+        liczba = liczba % 100
 
     if liczba > 19:
         wynik += dziesiatki[liczba // 10] + " "
@@ -30,11 +39,13 @@ def zamien_jedna(liczba):
         else:
             wynik += jednosci[liczba]
 
+    return wynik
+
 
 def sprawdz_zakres_i_zamien_jedna_liczbe():
     print("Podaj liczbę do zamiany")
     liczba = int(input())
-    if liczba <= -100 or liczba >= 100:
+    if liczba <= -1000 or liczba >= 1000:
         print("Poza zakresem")
     else:
         print(zamien_jedna(liczba))
@@ -50,3 +61,5 @@ def zamieniaj_w_petli():
 
 
 zamieniaj_w_petli()
+
+print("BLa")
